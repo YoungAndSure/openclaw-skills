@@ -24,7 +24,7 @@ metadata:
   }
 ---
 
-# PDF Reader Skill
+# Deep Reading Skill
 
 交互式PDF逐行阅读器，支持块级/行级翻页、跳转、搜索、书签等功能。
 

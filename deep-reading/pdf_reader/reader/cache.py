@@ -48,7 +48,7 @@ class PDFCache:
         if cache_dir:
             self.cache_dir = Path(cache_dir)
         else:
-            self.cache_dir = Path.home() / ".cache" / "book-reader"
+            self.cache_dir = Path.home() / ".cache" / "deep-reading"
         
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         

@@ -62,8 +62,8 @@ class StateManager:
     """状态管理器 - 支持按 PDF 切换存储目录（解析结果、进度、书签分目录保存）"""
     
     def __init__(self, storage_dir: str = None):
-        # 与 PDFCache 保持一致，使用 ~/.cache/book-reader/
-        self._base_storage = Path(storage_dir) if storage_dir else Path.home() / ".cache" / "book-reader"
+        # 与 PDFCache 保持一致，使用 ~/.cache/deep-reading/
+        self._base_storage = Path(storage_dir) if storage_dir else Path.home() / ".cache" / "deep-reading"
         self._active_storage_dir: Optional[Path] = None
         
         self._state = ReadingState()

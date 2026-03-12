@@ -1,4 +1,4 @@
-# Book Reader 📚
+# Deep Reading 📚
 
 交互式 PDF 逐行阅读器，支持块级翻页、搜索、书签等。
 
