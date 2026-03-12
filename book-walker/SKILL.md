@@ -103,7 +103,7 @@ metadata:
 ### 核心模块
 
 ```
-deep-reading/
+pdf_reader/
 ├── __init__.py         # 主入口
 ├── reader/
 │   ├── types.py        # 类型定义
@@ -142,7 +142,7 @@ deep-reading/
 
 ### 存储结构
 
-每个 PDF 有独立目录（`~/.cache/deep-reading/{hash}/`），包含：
+每个 PDF 有独立目录（`~/.cache/pdf_reader/{hash}/`），包含：
 - `index.json` - 索引（total_pages, page_offsets）
 - `p1.json`, `p2.json` ... - 各页块数据
 - `state.json` - 阅读进度
