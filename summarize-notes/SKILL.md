@@ -27,23 +27,30 @@ metadata:
 
 ## 流程（按顺序执行）
 
-### 1. 筛选当日笔记（精确日期判断）
+### 1. 筛选当日笔记
 
-⚠️ **必须使用日期判断方式，禁止使用 mmin（不精确）**
+从笔记目录中找出**修改日期为当天**的文件。
 
-**Linux 系统（推荐）：**
+**方式一（最近 24 小时，跨平台）：**
 ```bash
-today=$(date +%Y-%m-%d)
-find "$NOTES_DIR" -type f \( -name "*.md" -o -name "*.txt" \) \
-  -newermt "$today"
+find "$NOTES_DIR" -type f \( -name "*.md" -o -name "*.txt" \) -mmin -1440
 ```
 
-**macOS 系统：**
+**方式二（严格当日，需 GNU date，Linux）：**
+```bash
+find "$NOTES_DIR" -type f \( -name "*.md" -o -name "*.txt" \) \
+  -newermt "$(date +%Y-%m-%d)" ! -newermt "$(date -d tomorrow +%Y-%m-%d)"
+```
+
+**方式三（macOS date）：**
 ```bash
 today=$(date +%Y-%m-%d)
+tomorrow=$(date -v+1d +%Y-%m-%d)
 find "$NOTES_DIR" -type f \( -name "*.md" -o -name "*.txt" \) \
-  -newermb "$today"
+  -newermt "$today" ! -newermt "$tomorrow"
 ```
+
+按系统选择可用方式；若无当日笔记则结束。
 
 若结果为空，告知用户"今日暂无笔记"，并结束。
 
@@ -121,7 +128,7 @@ find "$NOTES_DIR" -type f \( -name "*.md" -o -name "*.txt" \) \
 
 **步骤 5.2：搜索历史笔记（限定范围）**
 ⚠️ **必须遵守以下约束**：
-- **搜索范围**：仅搜索**最近 30 天**的笔记（更早的关联价值低）
+- **搜索范围**：搜索**全部历史**笔记
 - **每个关键词**：最多匹配 **3 篇**历史笔记（避免分析太泛）
 - **关键词逻辑**：用 `grep -l "词1\|词2\|词3" *.md` 搜索
 - 记录匹配的笔记路径和匹配内容片段
